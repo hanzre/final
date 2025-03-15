@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSIT Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        #logo-section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: floatLogo 3s ease-in-out infinite;
+        }
+
+        #logo-section img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: #0ff;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1001;
+        }
+
+        .menu-btn:hover {
+            color: #f90;
+        }
+
+        nav {
+            background: #222;
+            position: fixed;
+            top: 50px;
+            right: 15px;
+            width: 200px;
+            display: none;
+            flex-direction: column;
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.5);
+            position: relative;
+        }
+
+        nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        nav ul li a {
+            color: #0ff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f90;
+            background: rgba(0, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .submenu {
+            display: none;
+            background: #333;
+            border-radius: 5px;
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            left: 0;
+        }
+
+        .submenu li {
+            border-bottom: none;
+        }
+
+        .submenu a {
+            padding: 8px;
+            display: block;
+        }
+
+        section {
+            margin: 50px auto;
+            padding: 30px;
+            display: none;
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .student-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .student {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #0ff;
+            transition: 0.3s;
+            width: 150px;
+            text-align: center;
+        }
+
+        .student:hover {
+            color: #f90;
+        }
+
+        .student img {
+            display: none;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 10px;
+            object-fit: cover;
+            border: 3px solid #0ff;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="nav-menu">
+        <ul>
+            <li><a href="#" onclick="showLogo()">Home</a></li>
+            <li><a href="#" onclick="showSection('about')">About Us</a></li>
+            <li><a href="#" onclick="showSection('students')">Student Info</a></li>
+            <li onclick="toggleSubmenu()">
+                <a href="#">BSIT Needs ▼</a>
+                <ul class="submenu" id="bsit-submenu">
+                    <li><a href="https://www.plmun.edu.ph/" target="_blank">CITCS PLMUN</a></li>
+                    <li><a href="https://www.facebook.com/share/1Bo7kQRNm3/" target="_blank">BSIT Facebook Page</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <header id="logo-section" onclick="showLogo()">
+        <img src="https://i.imgur.com/F9rm6DE.jpeg" alt="BSIT Logo">
+    </header>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are a group of dedicated and passionate Bachelor of Science in Information Technology (BSIT-1M) students from Pamantasan Lungsod ng Muntinlupa, collaborating on an exciting website project.</p>
+    </section>
+
+    <section id="students">
+        <h2>Student Information</h2>
+        <p>Our project was created by a talented team of BSIT students at Pamantasan Lungsod ng Muntinlupa.</p>
+        <div class="student-list">
+            <div class="student" onclick="togglePhoto(this)">
+                BRYAN PAUL RYAN
+                <img src="https://i.imgur.com/LKRJ3QE.jpeg" alt="Bryan">
+            </div>
+            <div class="student" onclick="togglePhoto(this)">
+                JOHN MARK BISMAR
+                <img src="https://i.imgur.com/foa2Bwl.jpeg" alt="Bismar">
+            </div>
+             <div class="student" onclick="togglePhoto(this)">
+               MARK SAAVEDRA
+                <img src="https://i.imgur.com/elcf0C8.jpeg" alt="mark">
+            </div>
+             <div class="student" onclick="togglePhoto(this)">
+                HANZ REY PAROHINOG
+                <img src="https://i.imgur.com/FA8cGH6.jpeg" alt="hanz">
+            </div>
+             <div class="student" onclick="togglePhoto(this)">
+               JAYSON FUNDADOR
+                <img src="https://i.imgur.com/Px38sbR.jpeg" alt="jayson">
+            </div>
+             <div class="student" onclick="togglePhoto(this)">
+                RAYVEN LLANTO
+                <img src="https://i.imgur.com/VwWDufV.jpeg" alt="hanz">
+            </div>
+            <div class="student" onclick="togglePhoto(this)">
+               SAM GABRIELL FERNANDEZ
+                <img src="https://i.imgur.com/dJYryEM.jpeg" alt="hanz">
+            </div>
+             <div class="student" onclick="togglePhoto(this)">
+                JEROME RIAN AMAZONA
+                <img src="https://i.imgur.com/RAaMwoj.jpeg" alt="hanz">
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("nav-menu");
+            let submenu = document.getElementById("bsit-submenu");
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+                submenu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        function showSection(sectionId) {
+            document.getElementById("logo-section").style.display = "none";
+            document.querySelectorAll("section").forEach(section => {
+                section.style.opacity = "0";
+                setTimeout(() => { section.style.display = "none"; }, 500);
+            });
+
+            setTimeout(() => {
+                document.getElementById(sectionId).style.display = "block";
+                document.getElementById(sectionId).style.opacity = "1";
+            }, 500);
+
+            toggleMenu();
+        }
+
+        function showLogo() {
+            document.getElementById("logo-section").style.display = "flex";
+            document.querySelectorAll("section").forEach(section => {
+                section.style.display = "none";
+            });
+
+            toggleMenu();
+        }
+
+        function toggleSubmenu() {
+            let submenu = document.getElementById("bsit-submenu");
+            submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+        }
+
+        function togglePhoto(element) {
+            let img = element.querySelector("img");
+            img.style.display = img.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
